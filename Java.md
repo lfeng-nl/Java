@@ -1,35 +1,50 @@
-## 1.版本介绍
+## 1.Java环境介绍
 
-- Java SE(Java Standard Edition): 标准版本,主要用于桌面应用程序开发,同时也是Java的基础,包含Java语言基础,JDBC(Java数据库连接), I/O,网络通信,多线程等技术;
-- Java EE(Java Enterprise Edition): 企业版本,主要用于企业级的网络程序;核心为EJB(企业Java组件模型);
-- Java ME(Java Micro Edition): 在移动设备和嵌入式设备上运行;
-- JVM(Java Virtual Machine): Java 虚拟机;
-- JDK:Java SE Development Kit,可以认为就是Java SE,
-- OpenJDK:JDK的一个分支, 开源版本;
-- JRE(Java Runtime Environment JDK): Java运行时环境,包含Java虚拟机,Java基础类库.
-- 开发时环境变量的配置: 需要配置以下环境变量`JAVA_HOME, PATH, CLASSPATH`
+### 1.名词解释
+
+- **Java SE(Java Standard Edition)**: 标准版本, 是Java的基础,包含Java语言基础,JDBC(Java数据库连接), I/O,网络通信,多线程等技术;
+- **Java EE(Java Enterprise Edition)**: 企业版本,主要用于企业级的网络程序;核心为EJB(企业Java组件模型);
+- **Java ME(Java Micro Edition)**: 在移动设备和嵌入式设备上运行;
+- **JVM(Java Virtual Machine)**: Java 虚拟机;
+- **JDK(Java SE Development Kit)**:可以认为就是Java SE,
+- **OpenJDK**:JDK的一个分支, 开源版本;
+- **JRE(Java Runtime Environment JDK)**: Java运行时环境,包含Java虚拟机,Java基础类库.
+
+### 2.环境变量
+
+-   `JAVA_HOME`: 指定JDK安装路径;
+-   `CLASS_PATH`: 类库文按安装位置;
 
 ## 2.基础
 
-### 1.变量和常量
+### 1.数据类型
 
 - 数据类型:
-  - 基本数据类型:变量存储的时数据本身;
-  - 引用数据类型: 变量保存的数据空间地址;
+  - **基本数据类型**: 变量存储的时数据本身;
+  - **引用数据类型**: 变量保存的数据空间地址;
 
   ![数据类型](http://img.mukewang.com/535a6fc10001b8f604930247.jpg)
 
 - 常量: 关键字`final`,常量名一般大写;
 
-### 2.数组
+- 变量: 应采用驼峰命名规则;
+
+### 2.运算符的特别点
+
+-   `&, &&,`都是或操作, `|, ||`都是与操作, 区别在于: 
+    -   `&, |`:  会对所有条件执行计算;
+    -   `&&, ||`: 短路运算符, 如果第一个表达式已经决定结果则不计算第二个表达式;
+-   条件运算法: `布尔表达式? 表达式1:表达式2`
+-   `for( i: arr){ ... }`: 遍历`arr`, 获取每个元素 存放到`i`中;
+
+### 3.数组
 
 - 声明:`数据类型[] 数组名`或者 `数据类型 数组名[]`; 例如: `int[] a; char s[]`;
-- 分配空间: `数组名 = new 数据类型[数组长度];
-- 直接赋值: `int[] scores = {1,2,3};` 等价于 `int[] scores = new int[]{1,2,3};`
+- 分配空间: `int[] a = new int[5];`, 创建长度为5的数组, 所有元素值默认为`0`;
+- 直接赋值: `int[] b = {1,2,3};` 等价于 `int[] b = new int[]{1,2,3};`
+    - **不可以同时指定长度和指定初始化**
 
 ## 3.类和对象
-
-> 
 
 ### 1.类
 
