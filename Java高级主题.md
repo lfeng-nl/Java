@@ -49,6 +49,12 @@
 - `getConstructors()`：获取所有`public`的`Constructor`；
 - `getDeclaredConstructors()`：获取所有`Constructor`。
 
+### 5.动态代理
+
+> `Proxy`: 提供了`Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)`静态方法.
+>
+> `InvocationHandler`: 接口, 定义了`public Object invoke(Object proxy, Method method, Object[] args); `方法. 重写该方法, 通过`method.invoke(obj,  args)`执行被代理的对象的方法. 
+
 ## 2.泛型
 
 ##3.注解
