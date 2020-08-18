@@ -49,6 +49,19 @@
 - `getConstructors()`：获取所有`public`的`Constructor`；
 - `getDeclaredConstructors()`：获取所有`Constructor`。
 
+### 5.获取注解
+
+- 判断注解`Class`是否存在:
+    - `Class.isAnnotationPresent(Class)`
+    - `Field.isAnnotationPresent(Class)`
+    - `Method.isAnnotationPresent(Class)`
+    - `Constructor.isAnnotationPresent(Class)`
+- 获取注解:
+    - `Class.getAnnotation(Class)`
+    - `Field.getAnnotation(Class)`
+    - `Method.getAnnotation(Class)`
+    - `Constructor.getAnnotation(Class)`
+
 ### 5.动态代理
 
 > `Proxy`: 提供了`Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)`静态方法.
@@ -59,6 +72,42 @@
 
 ##3.注解
 
-> 放在类, 方法, 字段, 参数前的一种特殊注释.
+> 放在类, 方法, 字段, 构造函数前的一种特殊注释或标记. 提供给IDE, 底层库, 或者在程序运行时使用.
 
-- 
+### 1.注解的使用
+
+- 使用时可以传递参数, 参数必须是常量(保证在**定义时就已确定了每个参数的值**).
+- 对于`RetentionPolicy.RUNTIME`的注解, 可以使用反射, 获取到注解或者判断某元素上是否存在该注解.
+    - 根据注解类型和注解参数, 执行对应逻辑代码.
+    - 通过`cls.参数方法()`可以获取到使用注解出设置的参数.
+
+### 2.定义
+
+- 基本语法
+
+    - ```java
+        @Target(ElementType.Report)
+        @Retention(RetentionPolicy.RUNTIME)
+        public @interface Report{
+            int min() default 1;
+            int max() default 100;
+        }
+        ```
+
+- 元注解 : 可以修饰注解的注解
+
+    - `@Target`: 注解应用代码位置
+        - 类或接口：`ElementType.TYPE`；
+        - 字段：`ElementType.FIELD`；
+        - 方法：`ElementType.METHOD`；
+        - 构造方法：`ElementType.CONSTRUCTOR`；
+        - 方法参数：`ElementType.PARAMETER`。
+    - `@Retention`: 注解的生命周期
+        - 仅编译期：`RetentionPolicy.SOURCE`；
+        - 仅class文件：`RetentionPolicy.CLASS`；
+        - 运行期：`RetentionPolicy.RUNTIME`。
+    - `@Repeatable`: 是否可重复使用
+    - `@Inherited`: 子类可以继承父类的注解.
+
+- 参数定义
+    - 参数类似无参方法,  可以使用`default`设置默认值.`int max() default 0;`
