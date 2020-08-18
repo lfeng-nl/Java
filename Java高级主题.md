@@ -49,7 +49,12 @@
 - `getConstructors()`：获取所有`public`的`Constructor`；
 - `getDeclaredConstructors()`：获取所有`Constructor`。
 
-### 5.获取注解
+### 5.获取父类或接口
+
+- `getSuperclass()`: 获取父类的class
+- `getInterfaces()`: 获取接口类
+
+### 6.获取注解
 
 - 判断注解`Class`是否存在:
     - `Class.isAnnotationPresent(Class)`
@@ -62,15 +67,23 @@
     - `Method.getAnnotation(Class)`
     - `Constructor.getAnnotation(Class)`
 
-### 5.动态代理
+### 7.动态代理
 
-> `Proxy`: 提供了`Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)`静态方法.
+> `Proxy`: 提供了`newProxyInstance`静态方法, 用于创建代理对象的实例.
 >
-> `InvocationHandler`: 接口, 定义了`public Object invoke(Object proxy, Method method, Object[] args); `方法. 重写该方法, 通过`method.invoke(obj,  args)`执行被代理的对象的方法. 
+> `InvocationHandler`: 接口, 定义了`invoke`方法. 用于扩展被代理对象的方法.
+
+- `Proxy.newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)`
+    - 在运行期间动态创建某个`interface`的实例.
+    - `loader`: 负责加载类, 可以由`Class.getClassLoader()`获取.
+    - `interfaces`: 接口类.
+    - `h`: `InvocationHandler`实例, 实现`invoke`方法, 对原有对象(被代理对象)方法进行扩展. 
+- `InvocationHandler`: 负责实现接口的方法调用. 通过`invoke(Object proxy, Method method, Object[] args`方法, 调用(通过反射调用, `method.invoke`)并扩展被代理对象的方法.
+- 动态代理实际上是JDK在运行期间创建class字节码并加载的过程.
 
 ## 2.泛型
 
-##3.注解
+## 3.注解
 
 > 放在类, 方法, 字段, 构造函数前的一种特殊注释或标记. 提供给IDE, 底层库, 或者在程序运行时使用.
 
@@ -110,4 +123,5 @@
     - `@Inherited`: 子类可以继承父类的注解.
 
 - 参数定义
+    
     - 参数类似无参方法,  可以使用`default`设置默认值.`int max() default 0;`
